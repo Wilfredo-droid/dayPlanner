@@ -1,0 +1,18 @@
+
+
+Objects:
+
+Day
+This is a horizontal rectangle, that delimits each hour of the day it has the capacity to create sub rectangles that 
+Will each have a different color, and a tag attached to it 
+which names the task of that sub rectangle, we may call that rectangle as "block", and the day in general "dayBlock" each block can have a unique color picked by the user at the beginning and end of each block we will have the hour and minutes in which that block ends a block can override another block
+
+List of task 
+A button which spawns a vertical list of the task of each 
+block of the day 
+
+Block 
+An object with a tag and color attached to it, its use will be that of being able to be added by the user and 
+add it to the dayBlock, if the user has already made a 
+block, its color and tag will be able to be reused when 
+scheduling the day 
