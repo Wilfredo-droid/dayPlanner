@@ -18,14 +18,26 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
 */
 
- 
+    let positionBlock = (e) => {
+
+        if(isHold){
+        /*It should'nt be -20 change it later to be - the 
+        amount of space needed to center the mouse into 
+        the item*/
+        
+        block.style.left = `clamp(0%, ${e.offsetX - 20}px, 90%)
+        `; /*Set to clamp to automatically and 
+        efficiently calculate how much to move the block 
+        without overflowing*/
+        }
+
+    }
 
     let removeHold = () => {
         isHold = false; 
 
             //Make this into a function
         
-
 
 
     }
@@ -35,6 +47,13 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
     }
 
+    let onHold = () => {
+
+        block.style.pointerEvents = "none";
+
+
+        dayBlock.addEventListener("mousemove", positionBlock);
+    }
 
     dayBlock.addEventListener("mousedown", addHold);
 
@@ -43,6 +62,7 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
     
     dayBlock.addEventListener("mouseleave", removeHold);
 
+    block.addEventListener("mousedown", onHold);
 
 
 }
