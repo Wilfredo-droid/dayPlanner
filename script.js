@@ -36,7 +36,6 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
     let removeHold = () => {
         isHold = false; 
 
-            //Make this into a function
         
         block.style.pointerEvents = "all";
         dayBlock.removeEventListener("mousemove", positionBlock);

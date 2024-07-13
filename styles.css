@@ -9,7 +9,7 @@ body{
     height: 100px;
     width: 90%;
     background-color: red;
-
+    position: relative;
 
 }
 
@@ -18,5 +18,12 @@ body{
     background-color: blue;
     height: 100%;
     width: 10%;
-    position: relative;
+    position: absolute;
+}
+
+.blockg{
+    background-color: green;
+    height: 100%;
+    width: 10%;
+    position: absolute;
 }
