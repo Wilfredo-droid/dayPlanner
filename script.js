@@ -38,6 +38,9 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
             //Make this into a function
         
+        block.style.pointerEvents = "all";
+        dayBlock.removeEventListener("mousemove", positionBlock);
+
 
 
     }
