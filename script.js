@@ -18,6 +18,31 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
 */
 
+ 
+
+    let removeHold = () => {
+        isHold = false; 
+
+            //Make this into a function
+        
+
+
+
+    }
+
+    let addHold = () => {
+        isHold = true;
+
+    }
+
+
+    dayBlock.addEventListener("mousedown", addHold);
+
+    dayBlock.addEventListener("mouseup", removeHold);
+
+    
+    dayBlock.addEventListener("mouseleave", removeHold);
+
 
 
 }
