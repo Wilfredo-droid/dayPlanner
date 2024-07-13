@@ -1,0 +1,14 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.dayBlock{
+    height: 100px;
+    width: 90%;
+    background-color: red;
+
+
+}
