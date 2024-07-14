@@ -1,5 +1,6 @@
 const dayBlock = document.querySelector(".dayBlock");
-const block = document.querySelector(".block");
+const blocks = document.querySelectorAll(".dayBlock > div");
+
 let isHold = true;
 let isInBlock = true;
 
@@ -18,7 +19,7 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
 */
 
-    let positionBlock = (e) => {
+    let positionBlock = (e, block) => {
 
         if(isHold){
         /*It should'nt be -20 change it later to be - the 
@@ -33,10 +34,8 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
     }
 
-    let removeHold = () => {
+    let removeHold = (block) => {
         isHold = false; 
-
-        
         block.style.pointerEvents = "all";
         dayBlock.removeEventListener("mousemove", positionBlock);
 
@@ -49,22 +48,28 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
     }
 
-    let onHold = () => {
+    let onHold = (block) => {
 
         block.style.pointerEvents = "none";
 
-
-        dayBlock.addEventListener("mousemove", positionBlock);
+        dayBlock.addEventListener("mousemove", (e) => positionBlock(e, block)); /*This syntax is what I found to work when I need two arguments
+        and "e" is one of them
+        */
     }
 
     dayBlock.addEventListener("mousedown", addHold);
 
-    dayBlock.addEventListener("mouseup", removeHold);
+    blocks.forEach((block) => {
 
+        block.addEventListener("mousedown", () => {onHold(block)}); //We need to use this syntax to be able to call the function with parameters
+
+        dayBlock.addEventListener("mouseup", () => {removeHold(block)});
+        dayBlock.addEventListener("mouseleave", () => {removeHold(block)});
+
+    });
     
-    dayBlock.addEventListener("mouseleave", removeHold);
+    
 
-    block.addEventListener("mousedown", onHold);
 
 
 }
