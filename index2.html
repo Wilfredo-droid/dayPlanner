@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <button class = "button">Click me</button>
+
+    <button class="button1">Change</button>
+    <button class="button2">Abort</button>
+    <button class="button3">Change back</button>
+    <button class="button4">Reinstate</button>
+
+    <script>
+
+        let button = document.querySelector(".button");
+        let button1= document.querySelector(".button1");
+        let button2 = document.querySelector(".button2");
+        let button3 = document.querySelector(".button3");
+        let button4 = document.querySelector(".button4");
+
+        let controller = new AbortController();
+        let signal = controller.signal;
+
+
+        button1.addEventListener("click", () => {
+
+            button.style.backgroundColor = "red";
+        }, {signal});
+
+        button3.addEventListener("click", () => {
+            
+            button.style.backgroundColor = "yellow";
+        }, {signal});
+
+        button2.addEventListener("click", () => {
+
+            controller.abort();
+        });
+
+        button4.addEventListener("click", () => {
+
+            console.log(controller.signal);
+            
+            controller = new AbortController();
+            signal = controller.signal;
+
+            button1.addEventListener("click", () => {
+
+                button.style.backgroundColor = "red";
+
+            }, {signal});
+
+            button3.addEventListener("click", () => {
+
+                button.style.backgroundColor = "yellow";
+                
+            }, {signal});
+
+            
+            console.log(controller.signal);
+
+        })
+
+        
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

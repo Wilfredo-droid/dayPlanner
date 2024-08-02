@@ -4,6 +4,8 @@ const blocks = document.querySelectorAll(".dayBlock > div");
 let isHold = true;
 let isInBlock = true;
 
+
+
 const moveBlockWhenHold = () => {
 
 /*General structure
@@ -18,6 +20,8 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
 
 */
+    let onHoldcontroller = new AbortController();
+    let onHoldsignal = onHoldcontroller.signal;
 
     let positionBlock = (e, block) => {
 
@@ -37,8 +41,10 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
     let removeHold = (block) => {
         isHold = false; 
         block.style.pointerEvents = "all";
-        dayBlock.removeEventListener("mousemove", positionBlock);
+        
+        // dayBlock.removeEventListener("mousemove", positionBlock);
 
+        onHoldcontroller.abort();
 
 
     }
@@ -50,9 +56,12 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
 
     let onHold = (block) => {
 
+        onHoldcontroller = new AbortController();
+        onHoldsignal = onHoldsignal.signal;
+
         block.style.pointerEvents = "none";
 
-        dayBlock.addEventListener("mousemove", (e) => positionBlock(e, block)); /*This syntax is what I found to work when I need two arguments
+        dayBlock.addEventListener("mousemove", (e) => positionBlock(e, block, {onHoldsignal})); /*This syntax is what I found to work when I need two arguments
         and "e" is one of them
         */
     }
@@ -62,7 +71,6 @@ mouse goes off the block, when the mouse stops holding, remove the event listene
     blocks.forEach((block) => {
 
         block.addEventListener("mousedown", () => {onHold(block)}); //We need to use this syntax to be able to call the function with parameters
-
         dayBlock.addEventListener("mouseup", () => {removeHold(block)});
         dayBlock.addEventListener("mouseleave", () => {removeHold(block)});
 
